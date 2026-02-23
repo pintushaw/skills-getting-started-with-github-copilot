@@ -1,36 +1,50 @@
 # Mergington High School Activities API
 
+[![Backend Tests](https://github.com/pintushaw/skills-getting-started-with-github-copilot/actions/workflows/ci-pytest.yml/badge.svg)](https://github.com/pintushaw/skills-getting-started-with-github-copilot/actions/workflows/ci-pytest.yml)
+
 A super simple FastAPI application that allows students to view and sign up for extracurricular activities.
 
 ## Features
 
 - View all available extracurricular activities
 - Sign up for activities
+- Unregister participants from activities
 
 ## Getting Started
 
 1. Install the dependencies:
 
    ```
-   pip install fastapi uvicorn
+   pip install -r requirements.txt
    ```
 
 2. Run the application:
 
    ```
-   python app.py
+   uvicorn src.app:app --reload
    ```
 
 3. Open your browser and go to:
+   - App: http://localhost:8000
    - API documentation: http://localhost:8000/docs
    - Alternative documentation: http://localhost:8000/redoc
+
+## Running Tests
+
+Use pytest from the project root:
+
+```
+pytest -q
+```
 
 ## API Endpoints
 
 | Method | Endpoint                                                          | Description                                                         |
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
+| GET    | `/`                                                               | Redirect to the static web app                                     |
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
 | POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
+| DELETE | `/activities/{activity_name}/unregister?email=student@mergington.edu` | Unregister a participant from an activity                           |
 
 ## Data Model
 
